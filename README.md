@@ -18,8 +18,6 @@
 
 PostPrism is a full-stack app built for the ORGO AI hackathon. Rather than a black-box automation, it gives each platform its own computer-use agent in an isolated ORGO cloud VM, streams every agent's screen back to one dashboard, and rewrites the post per platform. Front end: React + TypeScript (Vite). Back end: Flask + [Agent S2.5](https://github.com/simular-ai/Agent-S) with [UI-TARS 1.5](https://github.com/bytedance/UI-TARS) visual grounding.
 
-> **On the numbers in this README:** performance figures, success rates, and market/ROI projections come from the hackathon demo and the author's own estimates. They are illustrative, not independently benchmarked.
-
 ## Quick start
 
 The front end builds and runs on [Bun](https://bun.sh/); this demo mode needs no API keys.
@@ -38,259 +36,41 @@ For the full agent back end (ORGO + OpenAI keys and real parallel publishing), s
 
 ## Live demo
 
-### **Experience PostPrism in Production**
-
-[![🎮 Launch PostPrism](https://img.shields.io/badge/🎮%20Launch%20PostPrism-Live%20Demo-purple?style=for-the-badge)](https://postprism.lovable.app)
-
-[![🎬 Watch Demo Video](https://img.shields.io/badge/🎬%20Watch%20Demo%20Video-2%20Minutes-red?style=for-the-badge)](https://drive.google.com/file/d/1VQ-ryiUvUobjEwkwRCKIvOA-i2ifnabP/view?usp=drive_link)
+[![Launch PostPrism](https://img.shields.io/badge/launch-live%20demo-purple?style=for-the-badge)](https://postprism.lovable.app)
+[![Watch demo video](https://img.shields.io/badge/watch-2%20min%20video-red?style=for-the-badge)](https://drive.google.com/file/d/1VQ-ryiUvUobjEwkwRCKIvOA-i2ifnabP/view?usp=drive_link)
 
 **What you'll see:**
-- Real-time AI observation dashboard with parallel execution
-- Agent S2.5 navigating LinkedIn, Twitter, and Instagram simultaneously
-- Content automatically adapted for each platform's audience
-- Complete transparency in AI decision-making process
-- 120-second publishing vs 4hr+ traditional approaches
+- The real-time dashboard showing all three agents at once
+- Agent S2.5 navigating LinkedIn, X, and Instagram in parallel
+- The same input rewritten per platform (LinkedIn professional, X casual, Instagram visual)
+- Each agent's on-screen decisions as it works — no black box
 
-**Customer workflow:**
-1. Input content: *"Excited about our new AI breakthrough."*
-2. AI adapts for each platform (LinkedIn: professional, Twitter: casual, Instagram: visual)
-3. Watch agents work in parallel across 3 isolated VMs
-4. Content goes live on all platforms with 98.7% success rate
+**Workflow:** type one piece of content → each platform's agent adapts and posts it in its own VM → watch all three run in parallel.
 
 ---
 
-## 👨‍💻 **About This Solo Project**
+## About this project
 
-### **Development Context**
+Built solo for the ORGO AI hackathon. Scope accomplished:
 
-**The technical scope accomplished:**
-- Frontend application (React/TypeScript)
-- Backend orchestration (Flask/Python)
+- Front end: React + TypeScript (Vite)
+- Back end: Flask + Python orchestration
 - Agent S2.5 integration with custom optimizations
 - ORGO VM management and parallel execution
-- Real-time video streaming system by WebSocket
-- Performance monitoring and analytics
+- Real-time screen streaming over WebSocket
+- Progress monitoring
 
-**Most challenging:** Agent S2.5 dropped on August 1st, and migrating from S2 to S2.5 less than 24 hours before deadline proved... interesting. Successfully integrated the latest SOTA agent, but it required deploying custom grounding models and significant infrastructure investment.
-
----
-
-## 🏆 For Hackathon Judges 👇
-**Please read this important context about the project**
-
-<details>
-<summary>📝 A Note to Hackathon Judges (Click to expand) 👈</summary>
-
-### 📝 A Note to Hackathon Judges
-
-Hey there! Thanks for checking my submission for this ORGO AI hackathon, and thank you for the opportunity to let me explore ORGO.AI.
-
-I wanted to share a bit of context about this project that might not be immediately obvious from the code alone.
-
-**This project genuinely consumed a significant amount of my time (and wallet) 💸 (bye~)** and here's why:
-
-Agent S2.5 literally dropped on August 1st, and me being me, I thought "Hey, why not just migrate from the old Agent S2 architecture to the new S2.5! It seems awesome!" Yeah... that wasn't my smartest decision indeed less than 24hrs before the submission. 😅
-
-**The reality hit hard:**
-
-- Agent S2.5 was SOOOOO new that debugging felt like disaster
-- Had to deploy a separate grounding model (yes, additional infrastructure costs, and it's a lot.)
-- Blew way past my Cursor Pro plan limits and I need to do pay as you go (I DID NOT know I really could reach the limit before this lol)
-- But hey, I kept pushing and optimizing because I'm stubborn like that
-
-**The thing is** - I eventually DID successfully integrate the latest Agent S2.5! Was it extra work? Absolutely. Was it worth it? I think so! I just wanted to give this project and ORGO.AI applications the best shot I could.
-
-I'm not expecting to win any awards here. My coding isn't perfect, and I know there are probably way better performed projects out there.
-
-**My one tiny hope though** 🤞 - would there be any possibility of getting reimbursed for the infrastructure costs? They are:
-
-- HuggingFace endpoint deployment for the grounding model
-- Cursor Pro overage fees (I went HAM on the coding sessions)
-- Claude/OpenAI/etc API usage costs
-- Other API fees
-
-Since the hackathon didn't provide credits/supports for these kind of resources, I ended up paying out of pocket. We're probably looking at over hundred dollars here... 😬
-
-Since I'm still a student with no income right now :3, so these costs genuinely put a dent in my budget. (Also low-key looking for job opportunities in a couple months too!!!!! orz) But I was so excited about pushing the boundaries with Orgo + Agent S2.5 that I figured "cause why not" and went for it anyway.
-
-**But honestly?** I genuinely enjoyed diving deep into new orgo.ai and experimenting with cutting-edge agents. The learning experience was great! Not here to win, but here because I love building stuff.
-
-If there's any way to help with those expenses, that would be absolutely awesome! (love to keep working on this tbh, I feel like there is more potential in this projet) But totally understand if not! Thanks for taking the time to review my project! 🙏
-
----
-*P.S. - Sorry for the novel, but I figured transparency was better than leaving you wondering why some parts of the code look like they were written at 3 AM (because they probably were) 😂*
-
-</details>
+The hardest part: Agent S2.5 released on August 1st and I migrated from S2 to S2.5 under 24 hours before the deadline, which meant standing up a separate UI-TARS grounding endpoint on short notice.
 
 ---
 
-## ⚡ **60-Second Pitch for Busy Judges**
+## What it does
 
-**PostPrism** = World's first real-time AI observation platform + ORGO parallel execution
-- **🔥 Innovation**: Watch AI "think" while publishing to 3 platforms simultaneously
-- **⚡ ORGO Usage**: Maximizes <500ms boot, auto-pause, and VM isolation features
-- **📊 Performance**: 3x faster (120s vs 4hrs) with 98.7% success rate
-- **💰 Business**: $2.1B market, 276% ROI, clear path to $50M ARR
-- **🎮 Launched Page**: [Live experience](https://postprism.lovable.app) shows everything working
-- **🎬 Demo Video**: [Click to see real world use case](https://drive.google.com/file/d/1VQ-ryiUvUobjEwkwRCKIvOA-i2ifnabP/view?usp=drive_link) shows how to use it
-
-**Result**: Revolutionary AI transparency + ORGO infrastructure showcase
-
----
-
-## 💡 **The "Aha!" Moment: Why This Changes Everything**
-
-### 🎬 **Think About This...**
-- **Marketers** struggle to manage multiple accounts across LinkedIn, Twitter, Instagram
-- **Social Media Managers** manually adapt posts for different platforms every single day
-- **Content Creators** lose creative flow switching between platforms and formatting
-
-### ⚡ **Now Imagine...**
-1. **Write once** → AI automatically adapts for each platform's audience
-2. **Click "Publish"** → Watch AI agents work simultaneously in real-time
-3. **120 seconds later** → Content is live on all platforms with optimized messaging
-4. **3x faster** than any existing solution + you can **literally watch it happen**
-5. **Infinite scale** with ORGO.AI - start as many agents as you want
-
-[![🎮 See The Magic Happen](https://img.shields.io/badge/🎮%20See%20The%20Magic%20Happen-Live%20Demo-purple?style=for-the-badge)](https://postprism.lovable.app)
-
----
-
-## 🔥 **What Makes This Revolutionary (Not Just Another Tool)**
-
-### 🎯 **#1: AI Transparency Revolution**
-**First platform where you watch AI "think" and work:**
-- See AI read screens, understand interfaces, make decisions
-- Watch every click, type, and navigation happen live
-- No "black box" - complete transparency in AI automation
-
-### ⚡ **#2: ORGO AI Superpower Unleashed**
-**Maximizing [ORGO's unique potential](https://docs.orgo.ai/introduction):**
-- **Isolated Cloud VMs** - Each account gets dedicated environment with unique digital fingerprint
-- **<500ms Boot Time** - Instant activation when you need it
-- **Persistent Login States** - VMs remember your logins, never re-authenticate
-- **True Parallelism** - Zero interference between platforms
-
-### 🧠 **#3: Latest Agent S2.5 (August 2025) + Custom Optimizations**
-**Beyond [standard Agent S2](https://github.com/simular-ai/Agent-S):**
-- **2025 SOTA** computer use agent ([#1 on WindowsAgentArena](https://github.com/simular-ai/Agent-S))
-- Advanced visual grounding with **UI-TARS-1.5-7b** (42.5% OSWorld success rate)
-- Enhanced decision making with **OpenAI models** (default: gpt-4o-mini for speed, gpt-4o for quality, o3-2025-04-16 for best performance)
-- **Custom Production Optimizations:**
-  - **Anti-Perfectionism Engine** - Stops AI from endlessly editing content
-  - **Smart Loop Detection** - Prevents AI from getting stuck in cycles
-  - **Intelligent Rate Limiting** - Never hits API limits, always works smoothly
-
-### 🎥 **#4: Real-Time AI Observatory**
-**World's first AI observation platform:**
-- **Multi-screen view** - All platforms visible simultaneously
-- **Decision overlay** - See AI's thinking process in real-time
-- **Interactive controls** - Pause, analyze, or intervene if needed
-
----
-
-## Performance (hackathon demo)
-
-### **Ideal Speed Benchmarks**
-```
-Traditional Sequential Tools:
-LinkedIn 60s → Twitter: 60s → Instagram: 60s = 180s total
-
-PostPrism Parallel Architecture:
-LinkedIn ⎫
-Twitter  ⎬ 60s total (3x faster!)
-Instagram⎭
-```
-
-### **Head-to-Head Results**
-| Metric | Traditional Tools | PostPrism | Winner |
-|--------|------------------|-----------|---------|
-| **Publishing Speed** | 180± 12 seconds | 60± 2 seconds | 🏆 **3x faster** |
-| **Success Rate** | 84.2% | 98.7% | 🏆 **+14.5%** |
-| **Login Failures** | 23% of attempts | 0.8% of attempts | 🏆 **96.5% reduction** |
-| **Platform Detection** | 12% blocked | 0.2% blocked | 🏆 **98.3% reduction** |
-| **User Satisfaction** | 6.2/10 | 9.1/10 | 🏆 **47% improvement** |
-
----
-
-## 🏆 **Why PostPrism Wins the ORGO Challenge**
-
-### 🎯 **Maximum ORGO Potential Utilization**
-
-**Most projects use ORGO like this (basic):**
-```python
-# Standard approach - Limited potential
-computer = Computer()
-computer.click(100, 200)
-computer.type("Hello")
-```
-
-**PostPrism unleashes ORGO's true power:**
-```python
-# Revolutionary architecture maximizing ORGO advantages
-self.isolated_environments = {
-    'linkedin': {
-        'vm': Computer(project_id=linkedin_vm_id),     # Dedicated ORGO VM
-        'agent': AgentS2_5(ui_tars_1_5),              # Latest SOTA agent
-        'state': PersistentLoginState(),               # Never re-authenticate
-        'fingerprint': UniqueDigitalID()               # Anti-detection
-    },
-    'twitter': {...},    # Completely isolated execution
-    'instagram': {...}   # Zero interference possible
-}
-
-# Result: True parallelism + persistent state + 3x performance
-await asyncio.gather(*[
-    self._publish_with_transparency(env)
-    for env in self.isolated_environments.values()
-])
-```
-
-### 🚀 **Innovation That Can't Be Replicated**
-
-#### **1. ORGO Lock-in Advantages**
-- **<500ms Boot Time** = Dynamic scaling impossible elsewhere
-- **Auto-Pause Cost Optimization** = 70-80% cost reduction vs traditional VMs
-- **True VM Isolation** = Each account has unique digital fingerprint
-- **Persistent Login State** = Production reliability impossible without ORGO
-
-#### **2. Technical Breakthroughs**
-- **Real-Time AI Transparency** - 18-month head start on observation technology
-- **Custom Agent S2.5 Optimizations** - Production-grade enhancements unavailable elsewhere
-- **Parallel VM Orchestration** - Architecture impossible without ORGO infrastructure
-
-#### **3. Business Validation**
-- **$2.1B Market Opportunity** - Clear revenue path
-- **276% ROI for Customers** - Quantified value proposition
-- **98.7% Success Rate** - Production-ready reliability
-
----
-
-## 💰 **Business Case: The ROI That Sells Itself**
-
-### **Cost-Benefit Analysis (Real Numbers)**
-```
-Traditional Solution (per month):
-├── Staff time: 40 hours × $50/hour = $2,000
-├── Failed posts: 15% × $500 = $75
-├── Platform restrictions: $200
-└── Tool subscriptions: $300
-Total: $2,575/month
-
-PostPrism + ORGO (per month):
-├── ORGO VMs: $180 (auto-pause optimization)
-├── Staff time: 8 hours × $50/hour = $400
-├── Failed posts: 1% × $500 = $5
-└── PostPrism: $99
-Total: $684/month
-
-ROI: 276% savings ($1,891/month saved)
-```
-
-### **Market Opportunity**
-- **Target Market**: $2.1B (Digital Marketing Agencies + Enterprise Marketing)
-- **Unit Economics**: LTV:CAC = 24:1, 87% gross margins
-- **Revenue Model**: $99-$999/month SaaS + Enterprise custom pricing
+- **Watch the agents work.** The dashboard streams each VM's screen with the agent's decisions overlaid, so the automation isn't a black box — you see every read, click, and type.
+- **One agent per platform, in isolation.** ORGO gives each platform its own cloud VM (isolated browser, persistent login, per-VM fingerprint), so the three runs don't interfere and don't re-authenticate each time. ORGO's fast boot and auto-pause are what make spinning these up per run practical — see the [ORGO docs](https://docs.orgo.ai/introduction).
+- **Parallel, not sequential.** The three platform agents run at the same time via `asyncio.gather`, instead of one after another.
+- **Agent S2.5 + UI-TARS grounding.** Uses [Agent S2.5](https://github.com/simular-ai/Agent-S) for computer use with `ui-tars-1.5-7b` visual grounding, and OpenAI models for decisions (default `gpt-4o-mini`, up to `o3` for accuracy).
+- **Custom optimizations** in `backend/agent_s2_controller/optimized_agent_manager.py`: an anti-perfectionism check that stops endless content re-edits, loop detection, and adaptive rate limiting.
 
 ---
 
@@ -298,7 +78,7 @@ ROI: 276% savings ($1,891/month saved)
 
 ```
 postprism-12e78c39/
-├── 📄 README.md                          # This comprehensive guide
+├── 📄 README.md                          # This README
 ├── 📄 env.example.txt                    # Environment setup template
 │
 ├── 🎨 src/                               # Frontend (React + TypeScript)
@@ -340,12 +120,13 @@ postprism-12e78c39/
 
 ## Setup
 
-**Note:** Current demo manages 3 accounts (LinkedIn, Twitter, Instagram), but designed to scale to 100+ accounts across multiple platforms.
+**Note:** the demo manages 3 accounts (LinkedIn, X, Instagram); the design generalizes to more platforms/accounts.
 
-### **🎯 Prerequisites**
+### Prerequisites
 
-#### **1. ORGO AI Account & VM Setup**
-**⚠️ CRITICAL: This enables the parallel architecture**
+#### 1. ORGO AI account & VM setup
+
+This enables the parallel architecture.
 
 ```bash
 # Step 1: Get ORGO API Access
@@ -356,20 +137,21 @@ LinkedIn VM    → Project ID: "proj_linkedin_abc123" (save this!)
 Twitter VM     → Project ID: "proj_twitter_def456" (save this!)
 Instagram VM   → Project ID: "proj_instagram_ghi789" (save this!)
 
-# Step 3: The Secret Sauce - Persistent Login Setup
+# Step 3: Persistent login setup
 # For each VM:
 1. Connect to VM via ORGO interface
 2. Open browser → Navigate to platform → Login
-3. ✅ CRITICAL: Keep browser open, stay logged in
+3. Keep browser open, stay logged in
 4. Test: Refresh page → Should remain logged in
 
-# Why This Works:
+# Why this works:
 # - ORGO VMs maintain state when paused
 # - No re-authentication needed = faster publishing
-# - Each VM has unique IP = anti-detection
+# - Each VM has a unique IP
 ```
 
-#### **2. Agent S2.5 Configuration**
+#### 2. Agent S2.5 configuration
+
 ```bash
 # Required: OpenAI API Key
 OPENAI_API_KEY=sk-your_openai_key_here
@@ -381,36 +163,37 @@ AGENTS2_5_GROUNDING_URL=https://your-endpoint.endpoints.huggingface.cloud
 AGENTS2_5_GROUNDING_API_KEY=hf_your_token_here
 ```
 
-#### **3. Environment Configuration**
+#### 3. Environment configuration
+
 Create `.env` file:
+
 ```bash
-# 🔑 ORGO AI Configuration (ESSENTIAL!)
+# ORGO AI Configuration
 ORGO_API_KEY=your_orgo_api_key_here
 
-# 🎯 Platform-Specific VM IDs
+# Platform-Specific VM IDs
 ORGO_LINKEDIN_PROJECT_ID=proj_linkedin_abc123
 ORGO_TWITTER_PROJECT_ID=proj_twitter_def456
 ORGO_INSTAGRAM_PROJECT_ID=proj_instagram_ghi789
 
-# 🤖 AI Model Configuration
+# AI Model Configuration
 OPENAI_API_KEY=sk-your_openai_key_here
 AGENTS2_5_MODEL=o3-2025-04-16
 # but we use gpt-4o-mini for speed
 
-# 🎨 UI-TARS 1.5 Configuration
+# UI-TARS 1.5 Configuration
 AGENTS2_5_GROUNDING_URL=your_grounding_endpoint
 AGENTS2_5_GROUNDING_API_KEY=your_grounding_key
 AGENTS2_5_GROUNDING_MODEL=ui-tars-1.5-7b
 
-# ⚡ Performance Optimizations
+# Feature toggles
 ENABLE_ANTI_PERFECTIONISM=true
 ENABLE_LOOP_DETECTION=true
 ENABLE_LIVE_STREAMING=true
 ```
 
-### **🚀 Installation & Launch**
+### Installation & launch
 
-#### **Method 1: One-Click Setup**
 ```bash
 # Clone & setup
 git clone https://github.com/zelinewang/postprism-12e78c39.git
@@ -419,29 +202,28 @@ cd postprism-12e78c39
 # Run automated backend dependencies installation
 cd backend && chmod +x install_dependencies.sh && ./install_dependencies.sh
 
-# The setup script will create/update .env in project root with all necessary variables
-# Edit the generated .env file with your actual API keys and VM IDs
+# The setup script creates/updates .env in the project root; edit it with your keys and VM IDs
 
-# Launch PostPrism
+# Launch
 cd ..                                     # Return to project root
-npm run dev &                             # Frontend on :8080
-python backend/run_fixed.py              # Backend on :8000
+bun run dev &                             # Frontend on :8080 (npm run dev also works)
+python backend/run_fixed.py               # Backend on :8000
 
-# 🎉 Open http://localhost:8080 and watch the magic!
+# Open http://localhost:8080 and watch the agents run
 ```
 
 ---
 
 ## Technical deep dive
 
-### **Custom Agent S2.5 Optimizations**
+### Custom Agent S2.5 optimizations
 
 ```python
 class ProductionOptimizations:
     """Custom enhancements beyond official Agent S2.5"""
 
     def anti_perfectionism_engine(self, action_history, content):
-        """Prevents endless editing loops - Original research"""
+        """Prevents endless editing loops."""
         edit_attempts = self._count_edit_actions(action_history)
         semantic_change = self._measure_content_delta(content)
 
@@ -449,7 +231,7 @@ class ProductionOptimizations:
             return ForceCompletion(reason="minimal_improvement")
 
     def intelligent_loop_detection(self, action_sequence):
-        """ML-powered cycle prevention - 99.7% accuracy"""
+        """Cycle prevention via sequence pattern analysis."""
         pattern_prob = self._lstm_pattern_analyzer(action_sequence)
         if pattern_prob > 0.85:
             return BreakLoop(strategy="intelligent_completion")
@@ -464,11 +246,11 @@ class ProductionOptimizations:
         return min(optimal_delay, 30.0)  # Cap at 30 seconds
 ```
 
-### **Real-Time Streaming Architecture**
+### Real-time streaming
 
 ```python
 class LiveAIObservatory:
-    """Revolutionary real-time AI observation"""
+    """Real-time AI observation."""
 
     async def stream_ai_thinking(self, session_id):
         while self.streaming_active:
@@ -484,69 +266,16 @@ class LiveAIObservatory:
                 for frame, ai_state in zip(frames, self.agent_states)
             ]
 
-            # Stream to frontend with <1s latency
+            # Stream to frontend
             await self._broadcast_frames(session_id, enhanced_frames)
-            await asyncio.sleep(0.5)  # 2 FPS optimal
+            await asyncio.sleep(0.5)  # 2 FPS
 ```
 
 ---
 
-## 🔮 **Future Vision: 10-Year Roadmap**
+## Configuration reference
 
-### **Phase 1: Foundation (Q4 2025)**
-- ✅ **Current**: 3 platforms, real-time observation, Agent S2.5
-- 🎯 **Goal**: 500 customers, $150K ARR
-
-### **Phase 2: Expansion (2026)**
-- 🚀 **Platforms**: TikTok, YouTube, Facebook, LinkedIn Video
-- 📊 **Scale**: 10+ accounts per platform, team collaboration
-- 🧠 **AI**: Agent S3.0 integration, predictive optimization
-
-### **Phase 3: Market Leadership (2027-2028)**
-- 🏢 **Enterprise**: White-label solutions, API marketplace
-- 🌍 **Global**: Multi-region ORGO deployment
-- 📈 **Business**: $50M+ ARR, market leadership
-
-### **Phase 4: Industry Standard (2029+)**
-- 🎯 **Vision**: The operating system for digital presence
-- 🔢 **Scale**: 1M+ accounts, 50+ platforms
-- 💫 **Impact**: $500M+ ARR, next-generation IPO
-
----
-
-## 🛡️ **Why Competitors Can't Copy This**
-
-1. **ORGO Lock-in**: Parallel VM architecture impossible without ORGO's <500ms boot
-2. **AI Transparency Lead**: 18-month head start on real-time observation technology
-3. **Custom Optimizations**: Production-grade Agent S2.5 enhancements unavailable elsewhere
-4. **Network Effects**: Each customer improves AI training data
-5. **Infrastructure Moat**: ORGO partnership creates sustainable competitive advantage
-
----
-
-## 🌟 **Project Impact & Recognition**
-
-PostPrism represents a **paradigm shift** in social media automation:
-
-- **From Sequential to Parallel**: 3x performance improvement through ORGO infrastructure
-- **From Black Box to Transparent**: Users watch AI work in real-time
-- **From Prototype to Production**: Enterprise-grade reliability and optimization
-- **From Limited to Infinite**: Clear path from 3 accounts to unlimited scale
-
-### **Industry Recognition Criteria**
-✅ **Innovation**: First real-time AI observation platform globally
-✅ **ORGO Utilization**: Maximum leverage of platform's unique capabilities
-✅ **Technical Excellence**: Production-grade implementation with custom optimizations
-✅ **Business Viability**: Clear market opportunity with validated demand
-✅ **Scalability**: Demonstrated path to market leadership
-
----
-
-## 🔧 **Technical Configuration Reference**
-
-### **Corrected Environment Variables (Based on Actual Implementation)**
-
-**⚠️ Important Correction**: Earlier sections of this README may show `AGENT_S2_*` variable names for documentation purposes, but the actual implementation uses `AGENTS2_5_*` prefixes. Always use the configuration below from [`env.example.txt`](./env.example.txt):
+Use the configuration below (from [`env.example.txt`](./env.example.txt)); the implementation uses `AGENTS2_5_*` variable names.
 
 ```bash
 # ===== CORE REQUIREMENTS =====
@@ -569,63 +298,59 @@ AGENTS2_5_MAX_TRAJECTORY_LENGTH=8              # Memory efficiency
 AGENTS2_5_ENABLE_REFLECTION=true               # Learning capability
 ```
 
-### **Model Selection Guide (Cost vs Performance)**
+### Model selection guide
 
-| Model | Speed | Cost/Session | Best For |
+| Model | Speed | Cost/session (approx.) | Best for |
 |-------|-------|--------------|----------|
-| `gpt-4o-mini` | ⚡ Fast | ~$0.01 | **Default**: Development & most use cases |
-| `gpt-4o` | 🔄 Medium | ~$0.03 | Balanced: Better accuracy, acceptable cost |
-| `o3-2025-04-16` | 🐌 Slow | ~$0.10+ | Premium: Maximum accuracy, high cost |
+| `gpt-4o-mini` | Fast | ~$0.01 | Default: development & most use cases |
+| `gpt-4o` | Medium | ~$0.03 | Better accuracy, acceptable cost |
+| `o3-2025-04-16` | Slow | ~$0.10+ | Maximum accuracy, high cost |
 
-### **Automated Installation (From [`install_dependencies.sh`](./backend/install_dependencies.sh))**
+### Automated installation
 
-The installation script handles these components automatically:
-1. **Python Virtual Environment** - Isolated dependency management
-2. **Standard Dependencies** - Flask 3.0+, SocketIO 5.3+, OpenAI 1.25+, etc. ([`requirements.txt`](./backend/requirements.txt))
-3. **GUI Agents S2.5** - Latest v0.2.5 (Aug 2025) from [official repository](https://github.com/simular-ai/Agent-S)
-4. **ORGO AI Client** - Virtual desktop orchestration (`pip install orgo`)
-5. **Production Enhancements** - Gunicorn, Eventlet, performance optimizations
-6. **Environment Setup** - Interactive configuration wizard via `setup_env.py`
+`install_dependencies.sh` handles:
 
-**Installation Command**: `chmod +x install_dependencies.sh && ./install_dependencies.sh`
+1. **Python virtual environment** — isolated dependency management
+2. **Standard dependencies** — Flask 3.0+, SocketIO 5.3+, OpenAI 1.25+, etc. ([`requirements.txt`](./backend/requirements.txt))
+3. **GUI Agents S2.5** — v0.2.5 (Aug 2025) from the [official repository](https://github.com/simular-ai/Agent-S)
+4. **ORGO AI client** — virtual desktop orchestration (`pip install orgo`)
+5. **Production extras** — Gunicorn, Eventlet
+6. **Environment setup** — interactive wizard via `setup_env.py`
 
-### **Port Configuration**
+Run: `chmod +x install_dependencies.sh && ./install_dependencies.sh`
+
+### Ports
+
 - **Frontend**: `http://localhost:8080` (Vite dev server)
-- **Backend**: `http://localhost:8000` (Flask application)
-- **Health Check**: `http://localhost:8000/health`
+- **Backend**: `http://localhost:8000` (Flask)
+- **Health check**: `http://localhost:8000/health`
 
-### **Deployment Options (From [`DEPLOYMENT_STRATEGY.md`](./DEPLOYMENT_STRATEGY.md))**
+### Deployment options (see [`DEPLOYMENT_STRATEGY.md`](./DEPLOYMENT_STRATEGY.md))
 
-#### **Option 1: Demo Mode (No Setup)**
+**Demo mode (no backend):**
 ```bash
-# Frontend only - perfect for presentations
-npm install && npm run dev
+bun install && bun run dev
 echo "VITE_DEMO_MODE=true" > .env.local
 ```
 
-#### **Option 2: Full Production**
+**Full production:**
 ```bash
-# Automated setup using our installation script
 cd backend && chmod +x install_dependencies.sh && ./install_dependencies.sh
-cd .. && npm install
-cp env.example.txt .env  # Edit with your API keys
-npm run dev & python backend/run_fixed.py
+cd .. && bun install
+cp env.example.txt .env  # edit with your keys
+bun run dev & python backend/run_fixed.py
 ```
 
-#### **Option 3: Cloud Deployment**
-- **Frontend**: Deploy to [Lovable](https://postprism.lovable.app)
-- **Backend**: Deploy to Railway/Render with environment variables
-- **Configuration**: See [`DEPLOYMENT_STRATEGY.md`](./DEPLOYMENT_STRATEGY.md) for detailed steps
+**Cloud:** front end on [Lovable](https://postprism.lovable.app); back end on Railway/Render with the env vars above.
 
-### **Troubleshooting (From [`SETUP_GUIDE.md`](./SETUP_GUIDE.md))**
+### Troubleshooting (see [`SETUP_GUIDE.md`](./SETUP_GUIDE.md))
 
-**Common Issues & Solutions:**
 ```bash
 # Backend connection failed
 curl http://localhost:8000/health
 
-# OpenAI rate limits
-AGENTS2_5_MODEL=gpt-4o-mini  # Use cheaper model
+# OpenAI rate limits — use a cheaper model
+AGENTS2_5_MODEL=gpt-4o-mini
 
 # ORGO VM access issues
 curl -H "Authorization: Bearer $ORGO_API_KEY" https://api.orgo.ai/health
@@ -636,24 +361,18 @@ python backend/run_fixed.py --test
 
 ---
 
-<div align="center">
+## Status
 
-## 🌟 **Experience the Future of Social Media Automation**
+Hackathon project (ORGO AI hackathon, 2025); not actively maintained. Earlier drafts of this README carried pitch-style figures (success rates, ROI, market size) that were estimates, not measurements — they have been removed. What remains is reproducible from the code and the live demo.
 
-**PostPrism: Where AI transparency meets business productivity**
+## License
 
-[![🎬 Demo Video](https://img.shields.io/badge/🎬%20Demo%20Video-2%20Minutes-red?style=for-the-badge)](https://drive.google.com/file/d/1VQ-ryiUvUobjEwkwRCKIvOA-i2ifnabP/view?usp=drive_link)
+[MIT](LICENSE).
 
-[![🎮 Try Live Demo](https://img.shields.io/badge/🎮%20Try%20Live%20Demo-Production%20Ready-purple?style=for-the-badge)](https://postprism.lovable.app)
+## Acknowledgments
 
-[![⚡ Setup Production](https://img.shields.io/badge/⚡%20Setup%20Production-Get%20Real%20Results-blue?style=for-the-badge)](#️-complete-setup-guide)
-
-[![🏆 ORGO Challenge](https://img.shields.io/badge/🏆%20ORGO%20Challenge-Innovation%20Leader-gold?style=for-the-badge)](#-why-postprism-wins-the-orgo-challenge)
-
----
-
-*"The future belongs to those who can see AI working, not just trust it blindly."*
-
-**Building the future of transparent AI automation - one parallel VM at a time**
-
-</div>
+- [ORGO AI](https://docs.orgo.ai/) — isolated cloud VMs
+- [Agent S2.5](https://github.com/simular-ai/Agent-S) — computer-use agent
+- [UI-TARS 1.5](https://github.com/bytedance/UI-TARS) — visual grounding
+- [OpenAI](https://platform.openai.com/) — decision models
+- Front end scaffolded with [Lovable](https://lovable.dev/)
