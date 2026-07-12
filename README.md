@@ -1,47 +1,42 @@
-# 🌈 PostPrism - Watch AI Automate Your Life
-## *Real-Time AI Social Media Publishing Observatory*
-
 <div align="center">
 
-### 🎭 **"It's like having 3 super-smart assistants working for you simultaneously"**
-*You're watching AI agents automatically post your content across LinkedIn, Twitter, and Instagram - all at the same time with a simple prompt.*
+<img src="public/lovable-uploads/88784487-172c-4e13-87e3-3ecd85d7d29d.png" alt="PostPrism logo" width="120">
 
-[![Agent S2.5 SOTA](https://img.shields.io/badge/Agent%20S2.5-Aug%202025%20SOTA-red)](https://github.com/simular-ai/Agent-S)
-[![ORGO AI](https://img.shields.io/badge/ORGO%20AI-Revolutionary%20Usage-green)](https://docs.orgo.ai/)
-[![UI-TARS 1.5](https://img.shields.io/badge/UI--TARS%201.5-42.5%25%20OSWorld-blue)](https://github.com/bytedance/UI-TARS)
-[![Live Demo](https://img.shields.io/badge/🎮%20Live%20Demo-Try%20Now-purple)](https://postprism.lovable.app)
-[![ORGO Challenge](https://img.shields.io/badge/🏆%20ORGO%20Winner-Potential-gold)](#-why-postprism-wins-the-orgo-challenge)
+# PostPrism
 
-**🚀 Revolutionary breakthrough: First platform to show AI "thinking" in real-time while delivering 3x performance**
+**Publish one piece of content to LinkedIn, X, and Instagram at once — by running an OpenAI-driven computer-use agent in its own cloud VM for each platform, in parallel, while you watch each one work live.**
+
+[![Agent S2.5](https://img.shields.io/badge/agent-Agent%20S2.5-red)](https://github.com/simular-ai/Agent-S)
+[![ORGO](https://img.shields.io/badge/VMs-ORGO-green)](https://docs.orgo.ai/)
+[![UI-TARS 1.5](https://img.shields.io/badge/grounding-UI--TARS%201.5-blue)](https://github.com/bytedance/UI-TARS)
+[![Live demo](https://img.shields.io/badge/demo-live-purple)](https://postprism.lovable.app)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
+[Quick start](#quick-start) · [Live demo](#live-demo) · [Architecture](#architecture) · [Setup](#setup) · [Technical deep dive](#technical-deep-dive)
 
 </div>
 
----
+PostPrism is a full-stack app built for the ORGO AI hackathon. Rather than a black-box automation, it gives each platform its own computer-use agent in an isolated ORGO cloud VM, streams every agent's screen back to one dashboard, and rewrites the post per platform. Front end: React + TypeScript (Vite). Back end: Flask + [Agent S2.5](https://github.com/simular-ai/Agent-S) with [UI-TARS 1.5](https://github.com/bytedance/UI-TARS) visual grounding.
 
-## 📋 **Table of Contents**
+> **On the numbers in this README:** performance figures, success rates, and market/ROI projections come from the hackathon demo and the author's own estimates. They are illustrative, not independently benchmarked.
 
-### **Quick Access**
-- [⚡ 60-Second Pitch](#-60-second-pitch-for-busy-judges) - Executive summary
-- [🎮 Live Demo](#-live-product-demo) - See PostPrism in action
-- [🔥 Why Revolutionary](#-what-makes-this-revolutionary-not-just-another-tool) - Key innovations
+## Quick start
 
-### **Technical Deep Dive**
-- [🏗️ Architecture](#️-project-architecture--navigation) - Code structure
-- [⚙️ Setup Guide](#️-complete-setup-guide) - Installation instructions
-- [🔬 Technical Innovation](#-technical-innovation-deep-dive) - Custom optimizations
+The front end builds and runs on [Bun](https://bun.sh/); this demo mode needs no API keys.
 
-### **Business & Vision**
-- [💡 Market Opportunity](#-the-aha-moment-why-this-changes-everything) - Problem & solution
-- [💰 Business Case](#-business-case-the-roi-that-sells-itself) - ROI analysis
-- [🔮 Roadmap](#-future-vision-10-year-roadmap) - Long-term vision
+```bash
+git clone https://github.com/zelinewang/postprism-12e78c39.git
+cd postprism-12e78c39
+bun install
+bun run build    # verified: 1769 modules transformed, built in ~2s
+bun run dev      # front end at http://localhost:8080
+```
 
-### **Project Context**
-- [👨‍💻 Developer Story](#-about-this-solo-project) - Behind the scenes
-- [🏆 ORGO Challenge](#-why-postprism-wins-the-orgo-challenge) - Competition analysis
+For the full agent back end (ORGO + OpenAI keys and real parallel publishing), see [Setup](#setup).
 
 ---
 
-## 🎮 **Live Product Demo**
+## Live demo
 
 ### **Experience PostPrism in Production**
 
@@ -194,7 +189,7 @@ If there's any way to help with those expenses, that would be absolutely awesome
 
 ---
 
-## 🆚 **Brutal Performance Comparison**
+## Performance (hackathon demo)
 
 ### **Ideal Speed Benchmarks**
 ```
@@ -299,7 +294,7 @@ ROI: 276% savings ($1,891/month saved)
 
 ---
 
-## 🏗️ **Project Architecture & Navigation**
+## Architecture
 
 ```
 postprism-12e78c39/
@@ -343,7 +338,7 @@ postprism-12e78c39/
 
 ---
 
-## ⚙️ **Complete Setup Guide**
+## Setup
 
 **Note:** Current demo manages 3 accounts (LinkedIn, Twitter, Instagram), but designed to scale to 100+ accounts across multiple platforms.
 
@@ -418,8 +413,8 @@ ENABLE_LIVE_STREAMING=true
 #### **Method 1: One-Click Setup**
 ```bash
 # Clone & setup
-git clone https://github.com/your-username/postprism.git
-cd postprism
+git clone https://github.com/zelinewang/postprism-12e78c39.git
+cd postprism-12e78c39
 
 # Run automated backend dependencies installation
 cd backend && chmod +x install_dependencies.sh && ./install_dependencies.sh
@@ -437,7 +432,7 @@ python backend/run_fixed.py              # Backend on :8000
 
 ---
 
-## 🔬 **Technical Innovation Deep Dive**
+## Technical deep dive
 
 ### **Custom Agent S2.5 Optimizations**
 
