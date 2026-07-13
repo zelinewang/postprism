@@ -79,7 +79,7 @@ const PRODUCTION_API = 'https://your-app-name.onrender.com'
 
 #### 2.2 部署到Lovable
 ```bash
-# 1. 访问 https://lovable.dev/projects/9ff328fc-5e74-44a5-963a-1855a28041e4
+# 1. Open https://lovable.dev/ and create or import your own project
 # 2. Fork项目
 # 3. 更新API_CONFIG指向你的Render后端
 # 4. 发布项目

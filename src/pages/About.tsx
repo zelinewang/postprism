@@ -6,7 +6,7 @@ import { ArrowRight, Sparkles, Users, Target, Award, Globe, Zap } from 'lucide-r
 const PrismLogo = () => (
   <div className="relative w-8 h-8 animate-prism-rotate">
     <img
-      src="/lovable-uploads/88784487-172c-4e13-87e3-3ecd85d7d29d.png"
+      src="/postprism-logo.png"
       alt="PostPrism AI"
       className="w-full h-full object-contain filter drop-shadow-lg"
     />

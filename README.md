@@ -1,10 +1,10 @@
 <div align="center">
 
-<img src="public/lovable-uploads/88784487-172c-4e13-87e3-3ecd85d7d29d.png" alt="PostPrism logo" width="120">
+<img src="public/postprism-logo.png" alt="PostPrism logo" width="120">
 
 # PostPrism
 
-**Publish one piece of content to LinkedIn, X, and Instagram at once — by running an OpenAI-driven computer-use agent in its own cloud VM for each platform, in parallel, while you watch each one work live.**
+**A hackathon prototype for adapting one piece of content and orchestrating isolated computer-use agents for LinkedIn, X, and Instagram in parallel.**
 
 [![Agent S2.5](https://img.shields.io/badge/agent-Agent%20S2.5-red)](https://github.com/simular-ai/Agent-S)
 [![ORGO](https://img.shields.io/badge/VMs-ORGO-green)](https://docs.orgo.ai/)
@@ -12,11 +12,11 @@
 [![Live demo](https://img.shields.io/badge/demo-live-purple)](https://postprism.lovable.app)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-[Quick start](#quick-start) · [Live demo](#live-demo) · [Architecture](#architecture) · [Setup](#setup) · [Technical deep dive](#technical-deep-dive)
+[Quick start](#quick-start) · [Hosted demo](#hosted-front-end-demo) · [Architecture](#architecture) · [Setup](#setup) · [Technical deep dive](#technical-deep-dive)
 
 </div>
 
-PostPrism is a full-stack app built for the ORGO AI hackathon. Rather than a black-box automation, it gives each platform its own computer-use agent in an isolated ORGO cloud VM, streams every agent's screen back to one dashboard, and rewrites the post per platform. Front end: React + TypeScript (Vite). Back end: Flask + [Agent S2.5](https://github.com/simular-ai/Agent-S) with [UI-TARS 1.5](https://github.com/bytedance/UI-TARS) visual grounding.
+PostPrism is a full-stack experiment built for the ORGO AI hackathon. The credentialed backend creates a separate computer-use agent and ORGO VM per platform, adapts content per platform, executes the agents concurrently, and emits screenshots and progress events to one dashboard. The hosted Lovable build is a front-end-only simulation and does not sign in to or publish on social platforms. Front end: React + TypeScript (Vite). Back end: Flask + [Agent S2.5](https://github.com/simular-ai/Agent-S) with [UI-TARS 1.5](https://github.com/bytedance/UI-TARS) visual grounding.
 
 ## Quick start
 
@@ -30,31 +30,36 @@ bun run build    # verified: 1769 modules transformed, built in ~2s
 bun run dev      # front end at http://localhost:8080
 ```
 
-For the full agent back end (ORGO + OpenAI keys and real parallel publishing), see [Setup](#setup).
+For the credentialed experimental backend (ORGO + OpenAI keys), see [Setup](#setup).
 
 ---
 
-## Live demo
+## Hosted front-end demo
 
 [![Launch PostPrism](https://img.shields.io/badge/launch-live%20demo-purple?style=for-the-badge)](https://postprism.lovable.app)
 [![Watch demo video](https://img.shields.io/badge/watch-2%20min%20video-red?style=for-the-badge)](https://drive.google.com/file/d/1VQ-ryiUvUobjEwkwRCKIvOA-i2ifnabP/view?usp=drive_link)
 
-**What you'll see:**
-- The real-time dashboard showing all three agents at once
-- Agent S2.5 navigating LinkedIn, X, and Instagram in parallel
-- The same input rewritten per platform (LinkedIn professional, X casual, Instagram visual)
-- Each agent's on-screen decisions as it works — no black box
+The hosted Lovable deployment is deliberately front-end only. It uses
+[`src/services/demoService.ts`](./src/services/demoService.ts) to simulate
+parallel progress and results without backend calls, account access, provider
+credentials, or publishing.
 
-**Workflow:** type one piece of content → each platform's agent adapts and posts it in its own VM → watch all three run in parallel.
+**What you'll see:**
+- A simulated three-platform progress dashboard
+- Local platform-specific content adaptation
+- Simulated agent actions and completion states
+- The interface and information flow used by the credentialed backend path
+
+**Demo workflow:** type one piece of content → the browser adapts it per platform → simulated agents progress in parallel. The demo does not create social posts. The video records the hackathon workflow, not a current end-to-end publishing guarantee.
 
 ---
 
 ## About this project
 
-Built solo for the ORGO AI hackathon. Scope accomplished:
+Built solo for the ORGO AI hackathon. Implemented surfaces:
 
 - Front end: React + TypeScript (Vite)
-- Back end: Flask + Python orchestration
+- Experimental back end: Flask + Python orchestration
 - Agent S2.5 integration with custom optimizations
 - ORGO VM management and parallel execution
 - Real-time screen streaming over WebSocket
@@ -64,13 +69,23 @@ The hardest part: Agent S2.5 released on August 1st and I migrated from S2 to S2
 
 ---
 
-## What it does
+## What is implemented
 
-- **Watch the agents work.** The dashboard streams each VM's screen with the agent's decisions overlaid, so the automation isn't a black box — you see every read, click, and type.
-- **One agent per platform, in isolation.** ORGO gives each platform its own cloud VM (isolated browser, persistent login, per-VM fingerprint), so the three runs don't interfere and don't re-authenticate each time. ORGO's fast boot and auto-pause are what make spinning these up per run practical — see the [ORGO docs](https://docs.orgo.ai/introduction).
-- **Parallel, not sequential.** The three platform agents run at the same time via `asyncio.gather`, instead of one after another.
-- **Agent S2.5 + UI-TARS grounding.** Uses [Agent S2.5](https://github.com/simular-ai/Agent-S) for computer use with `ui-tars-1.5-7b` visual grounding, and OpenAI models for decisions (default `gpt-4o-mini`, up to `o3` for accuracy).
-- **Custom optimizations** in `backend/agent_s2_controller/optimized_agent_manager.py`: an anti-perfectionism check that stops endless content re-edits, loop detection, and adaptive rate limiting.
+- **Backend frame and progress events.** During the credentialed backend path, each agent step emits its ORGO screenshot and action state over Flask-SocketIO. The hosted demo simulates these events locally.
+- **One isolated agent per platform.** The backend initializes separate ORGO computers, grounding agents, and Agent S2.5 instances so the runs do not share browser state.
+- **Parallel task execution.** The backend creates one coroutine per platform and awaits them together with `asyncio.gather`.
+- **Agent S2.5 + UI-TARS grounding.** Uses [Agent S2.5](https://github.com/simular-ai/Agent-S) for computer use with `ui-tars-1.5-7b` visual grounding and a configurable OpenAI decision model (`gpt-4o-mini` by default).
+- **Loop breakers and rate-limit backoff.** `OptimizedAgentManager` detects repeated actions and rewrite attempts, caps steps, and increases per-platform delay after rate-limit errors.
+
+### Success semantics
+
+The backend is an experimental hackathon path, not a verified publishing
+service. Its current controller can return `success=True` when it detects a
+repeated action or a rewrite attempt, without reading the platform afterward to
+confirm that a post exists. It also generates a placeholder `post_url` rather
+than extracting a canonical URL from the platform. Treat a success result as
+"the controller terminated its run," not as proof of publication; verify the
+target account manually.
 
 ---
 
@@ -94,7 +109,7 @@ postprism-12e78c39/
 │   └── 📄 config/api.ts                  # API configuration & demo mode
 │
 ├── 🤖 backend/                           # Backend (Flask + Agent S2.5)
-│   ├── 📄 run_fixed.py                   # Production startup script
+│   ├── 📄 run_fixed.py                   # Backend entry point
 │   │                                     # Location: ./backend/run_fixed.py
 │   ├── 📄 app_fixed.py                   # Main Flask application
 │   │                                     # Location: ./backend/app_fixed.py
@@ -120,7 +135,7 @@ postprism-12e78c39/
 
 ## Setup
 
-**Note:** the demo manages 3 accounts (LinkedIn, X, Instagram); the design generalizes to more platforms/accounts.
+**Note:** the credentialed backend is designed around three accounts (LinkedIn, X, Instagram); the hosted demo does not access any account. The architecture can be extended to more platforms/accounts.
 
 ### Prerequisites
 
@@ -216,60 +231,31 @@ python backend/run_fixed.py               # Backend on :8000
 
 ## Technical deep dive
 
-### Custom Agent S2.5 optimizations
+The architecture below maps directly to tracked implementation; there is no
+pseudocode API in this section.
 
-```python
-class ProductionOptimizations:
-    """Custom enhancements beyond official Agent S2.5"""
+### Parallel orchestration
 
-    def anti_perfectionism_engine(self, action_history, content):
-        """Prevents endless editing loops."""
-        edit_attempts = self._count_edit_actions(action_history)
-        semantic_change = self._measure_content_delta(content)
+[`PostPrismApp._execute_official_publishing`](./backend/app_fixed.py) builds one
+`_publish_single_platform_parallel` coroutine per requested platform and passes
+the complete list to `asyncio.gather(..., return_exceptions=True)`. It then
+normalizes each `OptimizedPublishResult` and emits per-platform and aggregate
+Socket.IO events.
 
-        if edit_attempts > 3 and semantic_change < 0.05:
-            return ForceCompletion(reason="minimal_improvement")
+### Agent execution loop
 
-    def intelligent_loop_detection(self, action_sequence):
-        """Cycle prevention via sequence pattern analysis."""
-        pattern_prob = self._lstm_pattern_analyzer(action_sequence)
-        if pattern_prob > 0.85:
-            return BreakLoop(strategy="intelligent_completion")
+[`OptimizedAgentManager._run_optimized_agent_loop`](./backend/agent_s2_controller/optimized_agent_manager.py)
+repeats four concrete operations: capture an ORGO screenshot, call
+`AgentS2_5.predict`, emit the frame/action state, and execute the returned action
+through `Computer.exec`. The same method contains the repeated-action and
+rewrite loop breakers described in [Success semantics](#success-semantics).
 
-    def adaptive_rate_limiting(self, platform_responses):
-        """Dynamic API spacing based on real-time behavior"""
-        optimal_delay = self._calculate_adaptive_delay(
-            platform_load=self._estimate_load(platform_responses),
-            error_rate=self._recent_error_rate(),
-            time_factor=self._time_of_day_multiplier()
-        )
-        return min(optimal_delay, 30.0)  # Cap at 30 seconds
-```
+### Stream lifecycle
 
-### Real-time streaming
-
-```python
-class LiveAIObservatory:
-    """Real-time AI observation."""
-
-    async def stream_ai_thinking(self, session_id):
-        while self.streaming_active:
-            # Capture all 3 platforms simultaneously
-            frames = await asyncio.gather(*[
-                self.capture_vm_with_ai_overlay(vm_id)
-                for vm_id in self.active_vms
-            ])
-
-            # Add AI decision visualization
-            enhanced_frames = [
-                self._overlay_ai_decisions(frame, ai_state)
-                for frame, ai_state in zip(frames, self.agent_states)
-            ]
-
-            # Stream to frontend
-            await self._broadcast_frames(session_id, enhanced_frames)
-            await asyncio.sleep(0.5)  # 2 FPS
-```
+[`VideoStreamer`](./backend/streaming/video_streamer.py) owns session lifecycle,
+frame buffers, frame-rate limits, and Socket.IO broadcast state. Agent frames
+are emitted by `OptimizedAgentManager` as `video_frame` events with the session,
+platform, step, and base64 screenshot payload.
 
 ---
 
@@ -300,11 +286,11 @@ AGENTS2_5_ENABLE_REFLECTION=true               # Learning capability
 
 ### Model selection guide
 
-| Model | Speed | Cost/session (approx.) | Best for |
-|-------|-------|--------------|----------|
-| `gpt-4o-mini` | Fast | ~$0.01 | Default: development & most use cases |
-| `gpt-4o` | Medium | ~$0.03 | Better accuracy, acceptable cost |
-| `o3-2025-04-16` | Slow | ~$0.10+ | Maximum accuracy, high cost |
+| Model | Relative trade-off | Intended use |
+|-------|--------------------|--------------|
+| `gpt-4o-mini` | Faster / lower-cost | Default development path |
+| `gpt-4o` | More capable / higher-cost | Accuracy-sensitive experiments |
+| `o3-2025-04-16` | Slower reasoning path | Explicit opt-in experiments |
 
 ### Automated installation
 
@@ -333,7 +319,7 @@ bun install && bun run dev
 echo "VITE_DEMO_MODE=true" > .env.local
 ```
 
-**Full production:**
+**Credentialed local backend path (experimental):**
 ```bash
 cd backend && chmod +x install_dependencies.sh && ./install_dependencies.sh
 cd .. && bun install
@@ -341,7 +327,10 @@ cp env.example.txt .env  # edit with your keys
 bun run dev & python backend/run_fixed.py
 ```
 
-**Cloud:** front end on [Lovable](https://postprism.lovable.app); back end on Railway/Render with the env vars above.
+**Cloud:** the hosted [Lovable front end](https://postprism.lovable.app) is
+forced into front-end-only demo mode. The repository contains Render/Railway
+configuration for a separate backend, but that credentialed path is not part of
+the public demo and is not claimed as production-ready.
 
 ### Troubleshooting (see [`SETUP_GUIDE.md`](./SETUP_GUIDE.md))
 
@@ -363,7 +352,7 @@ python backend/run_fixed.py --test
 
 ## Status
 
-Hackathon project (ORGO AI hackathon, 2025); not actively maintained. Earlier drafts of this README carried pitch-style figures (success rates, ROI, market size) that were estimates, not measurements — they have been removed. What remains is reproducible from the code and the live demo.
+Hackathon project (ORGO AI hackathon, 2025); not actively maintained. Earlier drafts of this README carried pitch-style figures (success rates, ROI, market size) that were estimates, not measurements — they have been removed. The hosted front end is reproducible as a simulation. The credentialed backend is source-documented but was not end-to-end revalidated for this README and does not verify publication state.
 
 ## License
 
