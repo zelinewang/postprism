@@ -64,7 +64,7 @@ npm run dev
 ### Option 3: Cloud Deployment 🚀
 
 #### Frontend (Lovable)
-1. Visit: https://lovable.dev/projects/9ff328fc-5e74-44a5-963a-1855a28041e4
+1. Visit https://lovable.dev/ and create or import your own project
 2. Fork the project
 3. Configure environment variables in Lovable settings
 
