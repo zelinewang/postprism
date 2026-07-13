@@ -1,0 +1,41 @@
+name: Bug report
+description: Report a problem with the PostPrism front end or backend
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        PostPrism has two very different surfaces: the front-end demo (no keys,
+        simulated) and the credentialed computer-use backend (ORGO VMs +
+        agents). Telling us which one you hit narrows the search a lot.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Which part?
+      options:
+        - Front-end demo (hosted build)
+        - Front-end demo (local `bun run dev`)
+        - Credentialed backend (ORGO / agents)
+        - Build / tooling (`bun run build`, lint)
+    validations:
+      required: true
+  - type: textarea
+    id: summary
+    attributes:
+      label: What happened?
+      description: Expected versus actual behavior.
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+    validations:
+      required: true
+  - type: input
+    id: env
+    attributes:
+      label: Browser and OS
+      placeholder: "Chrome 130 on macOS 15"
+    validations:
+      required: true
