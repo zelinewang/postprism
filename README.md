@@ -6,6 +6,7 @@
 
 **A hackathon prototype for adapting one piece of content and orchestrating isolated computer-use agents for LinkedIn, X, and Instagram in parallel.**
 
+[![Build](https://github.com/zelinewang/postprism/actions/workflows/build.yml/badge.svg)](https://github.com/zelinewang/postprism/actions/workflows/build.yml)
 [![Agent S2.5](https://img.shields.io/badge/agent-Agent%20S2.5-red)](https://github.com/simular-ai/Agent-S)
 [![ORGO](https://img.shields.io/badge/VMs-ORGO-green)](https://docs.orgo.ai/)
 [![UI-TARS 1.5](https://img.shields.io/badge/grounding-UI--TARS%201.5-blue)](https://github.com/bytedance/UI-TARS)
