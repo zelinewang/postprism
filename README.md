@@ -352,7 +352,7 @@ python backend/run_fixed.py --test
 
 ## Status
 
-Hackathon project (ORGO AI hackathon, 2025); not actively maintained. Earlier drafts of this README carried pitch-style figures (success rates, ROI, market size) that were estimates, not measurements — they have been removed. The hosted front end is reproducible as a simulation. The credentialed backend is source-documented but was not end-to-end revalidated for this README and does not verify publication state.
+Hackathon project (ORGO AI hackathon, 2025); not actively maintained. This README was trimmed from its original hackathon pitch to focus on what you can run today. The hosted front end is reproducible as a simulation. The credentialed backend is source-documented but was not end-to-end revalidated for this README and does not verify publication state.
 
 ## License
 
