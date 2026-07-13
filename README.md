@@ -23,8 +23,8 @@ PostPrism is a full-stack experiment built for the ORGO AI hackathon. The creden
 The front end builds and runs on [Bun](https://bun.sh/); this demo mode needs no API keys.
 
 ```bash
-git clone https://github.com/zelinewang/postprism-12e78c39.git
-cd postprism-12e78c39
+git clone https://github.com/zelinewang/postprism.git
+cd postprism
 bun install
 bun run build    # verified: 1769 modules transformed, built in ~2s
 bun run dev      # front end at http://localhost:8080
@@ -92,7 +92,7 @@ target account manually.
 ## Architecture
 
 ```
-postprism-12e78c39/
+postprism/
 ├── 📄 README.md                          # This README
 ├── 📄 env.example.txt                    # Environment setup template
 │
@@ -211,8 +211,8 @@ ENABLE_LIVE_STREAMING=true
 
 ```bash
 # Clone & setup
-git clone https://github.com/zelinewang/postprism-12e78c39.git
-cd postprism-12e78c39
+git clone https://github.com/zelinewang/postprism.git
+cd postprism
 
 # Run automated backend dependencies installation
 cd backend && chmod +x install_dependencies.sh && ./install_dependencies.sh

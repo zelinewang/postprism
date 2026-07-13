@@ -447,8 +447,8 @@ const Landing = () => {
             <div>
               <h4 className="font-bold mb-4 text-foreground">Resources</h4>
               <ul className="space-y-2 text-muted-foreground">
-                <li><a href="https://github.com/zelinewang/postprism-12e78c39/blob/main/README.md#%EF%B8%8F-complete-setup-guide" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">Setup Guide</a></li>
-                <li><a href="https://github.com/zelinewang/postprism-12e78c39" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">Source Code</a></li>
+                <li><a href="https://github.com/zelinewang/postprism/blob/main/README.md#setup" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">Setup Guide</a></li>
+                <li><a href="https://github.com/zelinewang/postprism" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">Source Code</a></li>
                 <li><a href="https://drive.google.com/file/d/1VQ-ryiUvUobjEwkwRCKIvOA-i2ifnabP/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">Video Demo</a></li>
                 <li><a href="https://docs.orgo.ai/" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">ORGO AI</a></li>
               </ul>

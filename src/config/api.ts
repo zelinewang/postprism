@@ -69,8 +69,8 @@ export const CLOUD_CONFIG = {
 
   // URLs for sharing
   demoURL: 'https://postprism.lovable.app',
-  githubURL: 'https://github.com/zelinewang/postprism-12e78c39',
-  documentationURL: 'https://github.com/zelinewang/postprism-12e78c39/blob/main/README.md#%EF%B8%8F-complete-setup-guide'
+  githubURL: 'https://github.com/zelinewang/postprism',
+  documentationURL: 'https://github.com/zelinewang/postprism/blob/main/README.md#setup'
 };
 
 /**
